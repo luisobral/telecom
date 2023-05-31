@@ -1,5 +1,4 @@
 <?php
-use App\Http\Controllers;
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
@@ -37,5 +36,17 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->get('/', [ 'as' => 'index', 'uses' => 'AddressController@index'] );
         $router->post('/', [ 'as' => 'create', 'uses' => 'AddressController@create'] );
         $router->put('/{id}', [ 'as' => 'edit', 'uses' => 'AddressController@update']);
+    });
+    
+    $router->group(['prefix' => 'status'], function () use ($router) {
+        $router->get('/', [ 'as' => 'index', 'uses' => 'StatusController@index'] );
+        $router->post('/', [ 'as' => 'create', 'uses' => 'StatusController@create'] );
+        $router->put('/{id}', [ 'as' => 'edit', 'uses' => 'StatusController@update']);
+    });
+    
+    $router->group(['prefix' => 'produtos'], function () use ($router) {
+        $router->get('/', [ 'as' => 'index', 'uses' => 'ProdutosController@index'] );
+        $router->post('/', [ 'as' => 'create', 'uses' => 'ProdutosController@create'] );
+        $router->put('/{id}', [ 'as' => 'edit', 'uses' => 'ProdutosController@update']);
     });
 });
