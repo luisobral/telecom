@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers;
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
@@ -25,11 +26,10 @@ $router->post('register', 'AuthController@register');
 $router->post('login', 'AuthController@login');
 $router->group(['middleware' => 'auth'], function () use ($router) {
     $router->get('logout', 'AuthController@logout');
-  });
-
-
-$router->group(['prefix' => 'cliente'], function () use ($router) {
-    $router->get('/', [ 'as' => 'index', 'uses' => 'ClienteController@index'] );
-    $router->post('/', [ 'as' => 'create', 'uses' => 'ClienteController@create'] );
-    $router->post('/{id}', [ 'as' => 'edit', 'uses' => 'ClienteController@edit']);
+    
+    $router->group(['prefix' => 'cliente'], function () use ($router) {
+        $router->get('/', [ 'as' => 'index', 'uses' => 'ClientsController@index'] );
+        $router->post('/', [ 'as' => 'create', 'uses' => 'ClientsController@create'] );
+        $router->put('/{id}', [ 'as' => 'edit', 'uses' => 'ClientsController@update']);
+    });
 });
