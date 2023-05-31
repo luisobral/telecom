@@ -2,26 +2,26 @@
 
 namespace App\Models;
 
-use App\Models\Status;
-use App\Models\OrdemServicoItem;
+use App\Models\Produtos;
+use App\Models\OrdemServico;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\BelongsTo;
 
-class Produtos extends Model 
+class OrdemServicoItem extends Model 
 {
     /**
      * Summary of table
      *
      * @var string
      */
-    protected $table = "produtos";
+    protected $table = "ordem_servico_item";
 
     /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
      */
-    public $timestamps = true;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -29,7 +29,7 @@ class Produtos extends Model
      * @var array
      */
     protected $fillable = [
-        'codigo', 'descricao', 'garantia', 'status_id'
+        'quantidade','ordem_servico_id', 'produtos_id'
     ];
 
     /**
@@ -37,9 +37,9 @@ class Produtos extends Model
      *
      * 
      */
-    public function status()
+    public function ordemservico()
     {
-        return $this->belongsTo(Status::class);
+        return $this->belongsTo(OrdemServico::class, 'ordem_servico_id');
     }
 
     /**
@@ -47,8 +47,8 @@ class Produtos extends Model
      *
      * 
      */
-    public function ordemservicoitem()
+    public function produtos()
     {
-        return $this->hasMany(OrdemServicoItem::class, 'status_id');
+        return $this->belongsTo(Produtos::class, 'produtos_id');
     }
 }
