@@ -15,9 +15,8 @@ class ClientsController extends Controller
 
     protected function validation(){
         return [
-            'nome' => 'required|string',
-            'cpf' => 'integer|digits:11|required',
-            'endereco' => '',
+            'nome' => ['required','string','max:100'],
+            'cpf' => ['integer','digits:11','required']
         ];
 
     }
@@ -29,8 +28,9 @@ class ClientsController extends Controller
     }
     
     public function create(Request $request){
-        // dd($request->all());
-        $this->validate($request, $this->validation());
+        $validacao = $this->validation();
+        $validacao['cpf'][] = 'unique:clients';
+        $this->validate($request, $validacao);
         Clients::create($request->all());
         return "cliente salvo";
     }

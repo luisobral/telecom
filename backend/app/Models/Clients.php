@@ -28,7 +28,7 @@ class Clients extends Model
      * @var array
      */
     protected $fillable = [
-        'nome'
+        'nome','cpf'
     ];
 
     /**
