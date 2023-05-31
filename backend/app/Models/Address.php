@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Clients;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\BelongsTo;
 
@@ -41,6 +42,6 @@ class Address extends Model
      */
     public function clients()
     {
-        return $this->belongsTo(Serie::class);
+        return $this->belongsTo(Clients::class);
     }
 }
