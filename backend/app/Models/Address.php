@@ -29,7 +29,7 @@ class Address extends Model
      * @var array
      */
     protected $fillable = [
-        'Rua','Numero','CEP','Bairro','Cidade','Estado','Pais'
+        'rua','numero','CEP','bairro','cidade','estado','Pais', 'clients_id'
     ];
 
     

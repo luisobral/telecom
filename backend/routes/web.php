@@ -32,4 +32,10 @@ $router->group(['middleware' => 'auth'], function () use ($router) {
         $router->post('/', [ 'as' => 'create', 'uses' => 'ClientsController@create'] );
         $router->put('/{id}', [ 'as' => 'edit', 'uses' => 'ClientsController@update']);
     });
+    
+    $router->group(['prefix' => 'endereco'], function () use ($router) {
+        $router->get('/', [ 'as' => 'index', 'uses' => 'AddressController@index'] );
+        $router->post('/', [ 'as' => 'create', 'uses' => 'AddressController@create'] );
+        $router->put('/{id}', [ 'as' => 'edit', 'uses' => 'AddressController@update']);
+    });
 });
