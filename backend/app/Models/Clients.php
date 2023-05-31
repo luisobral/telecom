@@ -20,7 +20,7 @@ class Clients extends Model
      *
      * @var bool
      */
-    public $timestamps = false;
+    public $timestamps = true;
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +38,6 @@ class Clients extends Model
      */
     public function address()
     {
-        return $this->hasMany(Endereco::class, 'clients_id');
+        return $this->hasOne(Endereco::class, 'clients_id');
     }
 }
